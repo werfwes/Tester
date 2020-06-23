@@ -212,7 +212,7 @@
     VerticalAlignment="Top" Unchecked="cb5_Unchecked" RenderTransformOrigin="0.699,1.538" x:Name="cb5" HorizontalAlignment="Left" Content="" Checked="cb5_Checked" Margin="759.763,214.672,-422.196,-25.398" />
         <CheckBox
 
-    VerticalAlignment="Top" Unchecked="cb6_Unchecked" x:Name="cb6" Margin="759.764,244.165,-422.198,-54.891" HorizontalAlignment="Left" Content="" Checked="cb6_Checked" IsEnabled="False" />
+    VerticalAlignment="Top" Unchecked="cb6_Unchecked" x:Name="cb6" Margin="759.764,244.165,-422.198,-54.891" HorizontalAlignment="Left" Content="" Checked="cb6_Checked" />
         <TextBox x:Name="textA" HorizontalAlignment="Left" Height="197" Margin="406.796,94.617,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="370" Grid.ColumnSpan="2" PreviewTextInput="textA_PreviewTextInput"/>
         <Button x:Name="typeChangeBut" Content="Button" Grid.Column="1" HorizontalAlignment="Left" Height="26.629" Margin="170.486,17.021,0,0" Style="{DynamicResource ButtonStyle2}" VerticalAlignment="Top" Width="118.129" Click="typeChangeBut_Click"/>
 

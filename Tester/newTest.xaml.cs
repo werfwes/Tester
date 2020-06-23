@@ -23,12 +23,19 @@ namespace Tester
                 AQ[1, i] = "";
             }
         }
+        #region Переменные и поля
         int qNum = 0;
         string[,] AQ = new string[2, 1000];
         bool isTest = false;
         public string path { get; set; }
+        #endregion
 
 
+
+        #region Кнопки
+
+
+            #region Меню
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
@@ -41,77 +48,208 @@ namespace Tester
                 MW.Show();
                 this.Close();
             }
-        }  //МЕНЮ 
-        private void Button_Click_1(object sender, RoutedEventArgs e)   //НАЗАД
+        }
+        #endregion
+
+            #region Назад
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            string Q = textQ.Text;
+            string A;
+            if (textBox1.Text != "" &&
+                textBox2.Text != "" &&
+                textQ.Text != "")
+            {
+
+
+                if (isTest)
+                {
+
+                    string A1, A2, A3, A4, A5, A6;
+                    A1 = textBox1.Text;
+                    A2 = textBox2.Text;
+                    A3 = textBox3.Text;
+                    A4 = textBox4.Text;
+                    A5 = textBox5.Text;
+                    A6 = textBox6.Text;
+
+
+                    if (rb1.IsChecked.Value)
+                    {
+                        A1 = "~" + A1;
+                    }
+                    else if (rb2.IsChecked.Value)
+                    {
+                        A2 = "~" + A2;
+                    }
+                    else if (rb3.IsChecked.Value)
+                    {
+                        A3 = "~" + A3;
+                    }
+                    else if (rb4.IsChecked.Value)
+                    {
+                        A4 = "~" + A4;
+                    }
+                    else if (rb5.IsChecked.Value)
+                    {
+                        A5 = "~" + A5;
+                    }
+                    else if (rb6.IsChecked.Value)
+                    {
+                        A6 = "~" + A6;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Укажите верный ответ");
+                        return;
+                    }
+
+                    A = A1 + "$" + A2;
+
+                    if (A3 != "")
+                    {
+                        A = A + "$" + A3;
+                    }
+                    if (A4 != "")
+                    {
+                        A = A + "$" + A4;
+                    }
+                    if (A5 != "")
+                    {
+                        A = A + "$" + A5;
+                    }
+                    if (A6 != "")
+                    {
+                        A = A + "$" + A6;
+                    }
+
+                    AQ[0, qNum] = "@" + A;
+                    AQ[1, qNum] = Q;
+
+                }
+                else
+                {
+
+                    A = textA.Text;
+                    Q = textQ.Text;
+                    AQ[0, qNum] = "-" + A;
+                    AQ[1, qNum] = Q;
+
+
+                }
+            }
+
             qNum--;
             
-            if (AQ[0, qNum] != null && AQ[0, qNum] != "")
+            if (AQ[0, qNum] != null && AQ[0, qNum] != "") // Проверка на пустое значение
             {
-                if (AQ[0, qNum][0] == '@')
+                if (AQ[0, qNum][0] == '@') // Если тест
                 {
-                    AQ[0, qNum] = AQ[0, qNum].Remove(0, 1);
+                    
+                    cb1.IsChecked = true;
+                    cb2.IsChecked = true;
+                    cb3.IsChecked = true;
+                    cb4.IsChecked = true;
+                    cb5.IsChecked = true;
+                    cb6.IsChecked = true;
+
+
+                    AQ[0, qNum] = AQ[0, qNum].TrimStart('@');
                     textQ.Text = AQ[1, qNum];
                     textA.Visibility = Visibility.Hidden;
+                    isTest = true;
                     int i = 0;
                     string[] As = AQ[0, qNum].Split(new char[] { '$' });
                     foreach (string s in As)
                     {
-                        if (s[0] == '~')
+                        if (s != "" && s != null)
                         {
-                            switch (i)
+
+                            if (s[0] == '~')
+                            {
+                                switch (i + 1)
+                                {
+                                    case 1:
+                                        rb1.IsChecked = true;
+                                        break;
+                                    case 2:
+                                        rb2.IsChecked = true;
+                                        break;
+                                    case 3:
+                                        rb3.IsChecked = true;
+                                        break;
+                                    case 4:
+                                        rb4.IsChecked = true;
+                                        break;
+                                    case 5:
+                                        rb5.IsChecked = true;
+                                        break;
+                                    case 6:
+                                        rb6.IsChecked = true;
+                                        break;
+                                }
+
+                            }
+                            switch (i + 1)
                             {
                                 case 1:
-                                    rb1.IsChecked = true;
+                                    textBox1.Text = s.Trim('~');
                                     break;
                                 case 2:
-                                    rb2.IsChecked = true;
+                                    textBox2.Text = s.Trim('~');
                                     break;
                                 case 3:
-                                    rb3.IsChecked = true;
+                                    textBox3.Text = s.Trim('~');
                                     break;
                                 case 4:
-                                    rb4.IsChecked = true;
+                                    textBox4.Text = s.Trim('~');
                                     break;
                                 case 5:
-                                    rb5.IsChecked = true;
+                                    textBox5.Text = s.Trim('~');
                                     break;
                                 case 6:
-                                    rb6.IsChecked = true;
+                                    textBox6.Text = s.Trim('~');
                                     break;
                             }
-
-                        }
-                        switch (i)
-                        {
-                            case 1:
-                                textBox1.Text = s.Trim('~');
-                                break;
-                            case 2:
-                                textBox2.Text = s.Trim('~');
-                                break;
-                            case 3:
-                                textBox3.Text = s.Trim('~');
-                                break;
-                            case 4:
-                                textBox4.Text = s.Trim('~');
-                                break;
-                            case 5:
-                                textBox5.Text = s.Trim('~');
-                                break;
-                            case 6:
-                                textBox6.Text = s.Trim('~');
-                                break;
                         }
                         i++;
+                    }
+                    AQ[0, qNum] = "@" + AQ[0, qNum];
+
+
+                    if(textBox1.Text == "" || textBox1.Text == null)
+                    {
+                        cb1.IsChecked = false;
+                    }
+                    if (textBox2.Text == "" || textBox2.Text == null)
+                    {
+                        cb2.IsChecked = false;
+                    }
+                    if (textBox3.Text == "" || textBox3.Text == null)
+                    {
+                        cb3.IsChecked = false;
+                    }
+                    if (textBox4.Text == "" || textBox4.Text == null)
+                    {
+                        cb4.IsChecked = false;
+                    }
+                    if (textBox5.Text == "" || textBox5.Text == null)
+                    {
+                        cb5.IsChecked = false;
+                    }
+                    if (textBox6.Text == "" || textBox6.Text == null)
+                    {
+                        cb6.IsChecked = false;
                     }
                 }
                 else 
                 {
-                    AQ[0, qNum] = AQ[0, qNum].Remove(0, 1);
+                    AQ[0, qNum] = AQ[0, qNum].TrimStart('-');
                     textA.Visibility = Visibility.Visible;
+                    isTest = false;
                     textA.Text = AQ[0, qNum];
                     textQ.Text = AQ[1, qNum];
+                    AQ[0, qNum] = "-" + AQ[0, qNum];
                 }
             }
             if (qNum == 0)
@@ -120,7 +258,10 @@ namespace Tester
             }
             label1.Content = "Номер вопроса: " + (qNum + 1);
         }
-        private void Button_Click_2(object sender, RoutedEventArgs e)   //ДАЛЕЕ
+        #endregion
+
+            #region Далее
+        private void Button_Click_2(object sender, RoutedEventArgs e)  
         {
             
             if(textQ.Text == "")
@@ -132,7 +273,7 @@ namespace Tester
             string A;
 
             
-             
+            // Cохранение вопроса-ответа 
             if (isTest)
             {
                 if(textBox1.Text == "" || textBox2.Text == "")
@@ -216,22 +357,29 @@ namespace Tester
                 qNum++;
                 
             }
-            MessageBox.Show(A);
             
-
+            
+            // Чтение следующего вопроса-ответа, если тот указан
             if (AQ[0, qNum] != null && AQ[0, qNum] != "")
             {
                 if (AQ[0, qNum][0] == '@')
                 {
+                    cb1.IsChecked = true;
+                    cb2.IsChecked = true;
+                    cb3.IsChecked = true;
+                    cb4.IsChecked = true;
+                    cb5.IsChecked = true;
+                    cb6.IsChecked = true;
                     textQ.Text = AQ[1, qNum];
                     textA.Visibility = Visibility.Hidden;
+                    isTest = true;
                     int i = 0;
                     string[] As = AQ[0, qNum].Split(new char[] { '$' });
                     foreach (string s in As)
                     {
                         if (s[0] == '~')
                         {
-                            switch (i)
+                            switch (i + 1)
                             {
                                 case 1:
                                     rb1.IsChecked = true;
@@ -254,37 +402,59 @@ namespace Tester
                             }
 
                         }
-                        switch (i)
+                        switch (i + 1)
                         {
                             case 1:
-                                textBox1.Text = s.Trim('~');
+                                textBox1.Text = s.Trim('~', '@');
                                 break;
                             case 2:
-                                textBox2.Text = s.Trim('~');
+                                textBox2.Text = s.Trim('~', '@');
                                 break;
                             case 3:
-                                textBox3.Text = s.Trim('~');
+                                textBox3.Text = s.Trim('~', '@');
                                 break;
                             case 4:
-                                textBox4.Text = s.Trim('~');
+                                textBox4.Text = s.Trim('~', '@');
                                 break;
                             case 5:
-                                textBox5.Text = s.Trim('~');
+                                textBox5.Text = s.Trim('~', '@');
                                 break;
                             case 6:
-                                textBox6.Text = s.Trim('~');
+                                textBox6.Text = s.Trim('~', '@');
                                 break;
                         }
                         i++;
                     }
-
-
-
+                    if (textBox1.Text == "" || textBox1.Text == null)
+                    {
+                        cb1.IsChecked = false;
+                    }
+                    if (textBox2.Text == "" || textBox2.Text == null)
+                    {
+                        cb2.IsChecked = false;
+                    }
+                    if (textBox3.Text == "" || textBox3.Text == null)
+                    {
+                        cb3.IsChecked = false;
+                    }
+                    if (textBox4.Text == "" || textBox4.Text == null)
+                    {
+                        cb4.IsChecked = false;
+                    }
+                    if (textBox5.Text == "" || textBox5.Text == null)
+                    {
+                        cb5.IsChecked = false;
+                    }
+                    if (textBox6.Text == "" || textBox6.Text == null)
+                    {
+                        cb6.IsChecked = false;
+                    }
                 }
                 else
                 {
+                    isTest = false;
                     textA.Visibility = Visibility.Visible;
-                    textA.Text = AQ[0, qNum];
+                    textA.Text = AQ[0, qNum].Trim('-');
                     textQ.Text = AQ[1, qNum];
                 }
             }
@@ -301,23 +471,117 @@ namespace Tester
             }
             butBack.IsEnabled = true;
             label1.Content = "Номер вопроса: " + (qNum + 1);
-            // сделать butBack
-        }
-
-        
             
+        }
+        #endregion
+
+            #region Тип задания
+        private void typeChangeBut_Click(object sender, RoutedEventArgs e)
+        {
+            if (isTest)
+            {
+                typeChangeBut.Content = "Тестовое задание";
+                textA.Visibility = Visibility.Visible;
+                isTest = !isTest;
+            }
+            else
+            {
+                typeChangeBut.Content = "    Полный ответ";
+                textA.Visibility = Visibility.Hidden;
+                isTest = !isTest;
+            }
+
+        }
+        #endregion
+
+            #region Сохранение
         private void butSave_Click(object sender, RoutedEventArgs e)
         {
+            string Q = textQ.Text;
+            string A;
+            if (textBox1.Text != "" &&
+                textBox2.Text != "" &&
+                textQ.Text != "")
+            {
 
 
+                if (isTest)
+                {
+
+                    string A1, A2, A3, A4, A5, A6;
+                    A1 = textBox1.Text;
+                    A2 = textBox2.Text;
+                    A3 = textBox3.Text;
+                    A4 = textBox4.Text;
+                    A5 = textBox5.Text;
+                    A6 = textBox6.Text;
 
 
-            
+                    if (rb1.IsChecked.Value)
+                    {
+                        A1 = "~" + A1;
+                    }
+                    else if (rb2.IsChecked.Value)
+                    {
+                        A2 = "~" + A2;
+                    }
+                    else if (rb3.IsChecked.Value)
+                    {
+                        A3 = "~" + A3;
+                    }
+                    else if (rb4.IsChecked.Value)
+                    {
+                        A4 = "~" + A4;
+                    }
+                    else if (rb5.IsChecked.Value)
+                    {
+                        A5 = "~" + A5;
+                    }
+                    else if (rb6.IsChecked.Value)
+                    {
+                        A6 = "~" + A6;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Укажите верный ответ");
+                        return;
+                    }
+
+                    A = A1 + "$" + A2;
+
+                    if (A3 != "")
+                    {
+                        A = A + "$" + A3;
+                    }
+                    if (A4 != "")
+                    {
+                        A = A + "$" + A4;
+                    }
+                    if (A5 != "")
+                    {
+                        A = A + "$" + A5;
+                    }
+                    if (A6 != "")
+                    {
+                        A = A + "$" + A6;
+                    }
+
+                    AQ[0, qNum] = "@" + A;
+                    AQ[1, qNum] = Q;
+
+                }
+                else
+                {
+
+                    A = textA.Text;
+                    Q = textQ.Text;
+                    AQ[0, qNum] = "-" + A;
+                    AQ[1, qNum] = Q;
 
 
-            AQ[0, qNum] = textA.Text;
-            AQ[1, qNum] = textQ.Text;
-            if(!Directory.Exists("tests/"))
+                }
+            }
+            if (!Directory.Exists("tests/"))
             {
                 Directory.CreateDirectory("tests/");
             }
@@ -334,14 +598,8 @@ namespace Tester
 
                 CryptoStream crStream = new CryptoStream(stream, cryptic.CreateEncryptor(), CryptoStreamMode.Write);
                 StreamWriter writer = new StreamWriter(crStream);
-
-
-
-
-
-
                 
-                
+
                 for (int i = 0; i < 1000; i++)
                 {
                     byte[] data;
@@ -365,30 +623,33 @@ namespace Tester
             }
             
         }
+        #endregion  
 
+
+        #endregion
+
+
+
+        #region Свойства контролов
         private void Window_Closed(object sender, EventArgs e)
         {
 
         }
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             MainWindow MW = new MainWindow();
             MW.Show();
         }
-
         private void cb1_Checked(object sender, RoutedEventArgs e)
         {
             rb1.IsEnabled = true;
             textBox1.IsEnabled = true;
         }
-
         private void cb2_Checked(object sender, RoutedEventArgs e)
         {
             rb2.IsEnabled = true;
             textBox2.IsEnabled = true;
         }
-
         private void cb3_Checked(object sender, RoutedEventArgs e)
         {
             rb3.IsEnabled = true;
@@ -396,47 +657,40 @@ namespace Tester
             
             
         }
-
         private void cb4_Checked(object sender, RoutedEventArgs e)
         { 
             rb4.IsEnabled = true;
             textBox4.IsEnabled = true;
             
         }
-
         private void cb5_Checked(object sender, RoutedEventArgs e)
         {
             rb5.IsEnabled = true;
             textBox5.IsEnabled = true;
             
         }
-
         private void cb6_Checked(object sender, RoutedEventArgs e)
         {
             rb6.IsEnabled = true;
             textBox6.IsEnabled = true;
             
         }
-
         private void cb1_Unchecked(object sender, RoutedEventArgs e)
         {
             cb1.IsChecked = true;
             
         }
-
         private void cb2_Unchecked(object sender, RoutedEventArgs e)
         {
             cb2.IsChecked = true;
             
         }
-
         private void cb3_Unchecked(object sender, RoutedEventArgs e)
         {
             rb3.IsEnabled = false;
             textBox3.IsEnabled = false;
             
         }
-
         private void cb4_Unchecked(object sender, RoutedEventArgs e)
         {
             
@@ -445,21 +699,18 @@ namespace Tester
             
             
         }
-
         private void cb5_Unchecked(object sender, RoutedEventArgs e)
         {
             rb5.IsEnabled = false;
             textBox5.IsEnabled = false;
             
         }
-
         private void cb6_Unchecked(object sender, RoutedEventArgs e)
         {
             rb6.IsEnabled = false;
             textBox6.IsEnabled = false;
 
         }
-
         private void rb1_Checked(object sender, RoutedEventArgs e)
         {
             rb2.IsChecked = false;
@@ -468,7 +719,6 @@ namespace Tester
             rb5.IsChecked = false;
             rb6.IsChecked = false;
         }
-
         private void rb2_Checked(object sender, RoutedEventArgs e)
         {
             rb1.IsChecked = false;
@@ -477,7 +727,6 @@ namespace Tester
             rb5.IsChecked = false;
             rb6.IsChecked = false;
         }
-
         private void rb3_Checked(object sender, RoutedEventArgs e)
         {
             rb1.IsChecked = false;
@@ -486,7 +735,6 @@ namespace Tester
             rb5.IsChecked = false;
             rb6.IsChecked = false;
         }
-
         private void rb4_Checked(object sender, RoutedEventArgs e)
         {
             rb1.IsChecked = false;
@@ -495,7 +743,6 @@ namespace Tester
             rb5.IsChecked = false;
             rb6.IsChecked = false;
         }
-
         private void rb5_Checked(object sender, RoutedEventArgs e)
         {
             rb1.IsChecked = false;
@@ -504,7 +751,6 @@ namespace Tester
             rb4.IsChecked = false;
             rb6.IsChecked = false;
         }
-
         private void rb6_Checked(object sender, RoutedEventArgs e)
         {
             rb1.IsChecked = false;
@@ -513,34 +759,14 @@ namespace Tester
             rb4.IsChecked = false;
             rb5.IsChecked = false;
         }
-
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
            
-        }
-
-        private void typeChangeBut_Click(object sender, RoutedEventArgs e)
-        {
-            if(isTest)
-            {
-                typeChangeBut.Content = "Тестовое задание";
-                textA.Visibility = Visibility.Visible;
-                isTest = !isTest;
-            }
-            else 
-            {
-                typeChangeBut.Content = "    Полный ответ";
-                textA.Visibility = Visibility.Hidden;
-                isTest = !isTest;
-            }
-            
-        }
-
+        }      
         private void textQ_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
            
         }
-
         private void textA_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             if(e.Text == "#" || e.Text == "$" || e.Text == "|" || e.Text == "~")
@@ -548,5 +774,6 @@ namespace Tester
                 e.Handled = true;
             }
         }
+        #endregion
     }
 }

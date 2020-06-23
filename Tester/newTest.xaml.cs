@@ -23,6 +23,8 @@ namespace Tester
                 AQ[1, i] = "";
             }
         }
+
+
         #region Переменные и поля
         int qNum = 0;
         string[,] AQ = new string[2, 1000];
@@ -56,9 +58,14 @@ namespace Tester
         {
             string Q = textQ.Text;
             string A;
-            if (textBox1.Text != "" &&
-                textBox2.Text != "" &&
-                textQ.Text != "")
+            if (textBox1.Text != "" ||
+                textBox2.Text != "" ||
+                textBox3.Text != "" ||
+                textBox4.Text != "" ||
+                textBox5.Text != "" ||
+                textBox6.Text != "" ||
+                textQ.Text != "" ||
+                textA.Text != "")
             {
 
 
@@ -581,6 +588,8 @@ namespace Tester
 
                 }
             }
+
+
             if (!Directory.Exists("tests/"))
             {
                 Directory.CreateDirectory("tests/");

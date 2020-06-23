@@ -11,6 +11,7 @@ namespace Tester
     /// </summary>
     public partial class doTest : Window
     {
+
         private string tp = "";
         public doTest()
         {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tester"
         mc:Ignorable="d"
-        Title="Тестер" Height="568" Width="480.5" Closing="Window_Closing" Activated="Window_Activated" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Тестер" Height="607" Width="480.5" Closing="Window_Closing" Activated="Window_Activated" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.Resources>
         <Style x:Key="TextBoxStyle1" TargetType="{x:Type TextBox}">
             <Setter Property="Template">
@@ -247,13 +247,13 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid Margin="0,1.5,2,-1">
+    <Grid Margin="0,2,-6,3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="69*"/>
             <ColumnDefinition Width="403*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="bB" Content="Button" HorizontalAlignment="Left" Height="50.5" Margin="10,480,0,0" Style="{DynamicResource ButtonStyle4}" VerticalAlignment="Top" Width="106" IsEnabled="False" Click="bB_Click" Grid.ColumnSpan="2"/>
-        <Button x:Name="bN" Content="Далее&gt;" HorizontalAlignment="Left" Height="50" Margin="265.78,480,0,0" Style="{DynamicResource ButtonStyle7}" VerticalAlignment="Top" Width="113" Click="Button_Click_1" BorderBrush="#FFD1D1D1" Grid.Column="1">
+        <Button x:Name="bB" Content="Button" HorizontalAlignment="Left" Height="50" Margin="10,510,0,0" Style="{DynamicResource ButtonStyle4}" VerticalAlignment="Top" Width="106" IsEnabled="False" Click="bB_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="bN" Content="Далее&gt;" HorizontalAlignment="Left" Height="50" Margin="266,510,0,0" Style="{DynamicResource ButtonStyle7}" VerticalAlignment="Top" Width="113" Click="Button_Click_1" BorderBrush="#FFD1D1D1" Grid.Column="1">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                     <GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -263,12 +263,24 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-        <Button Content="Выход" HorizontalAlignment="Left" Height="50.5" Margin="69.28,480,0,0" Style="{DynamicResource ButSt}" VerticalAlignment="Top" Width="175" Grid.Column="1" Click="Button_Click_2"/>
+        <Button Content="Выход" HorizontalAlignment="Left" Height="50" Margin="69,510,0,0" Style="{DynamicResource ButSt}" VerticalAlignment="Top" Width="175" Grid.Column="1" Click="Button_Click_2"/>
         <TextBlock HorizontalAlignment="Left" Height="38.5" Margin="124.78,260,0,0" TextWrapping="Wrap" Text="Ответ:" VerticalAlignment="Top" Width="73.5" Foreground="#FFF77C00" FontSize="24" RenderTransformOrigin="0.712,0.727" Grid.Column="1"/>
         <TextBlock HorizontalAlignment="Left" Height="35.5" Margin="114.28,48,0,0" TextWrapping="Wrap" Text="Вопрос:" VerticalAlignment="Top" Width="94.5" Foreground="#FFF77C00" FontSize="24" Grid.Column="1"/>
         <TextBox x:Name="textQ" HorizontalAlignment="Left" Height="160" Margin="10,88.5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="438.5" IsEnabled="False" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="textA" HorizontalAlignment="Left" Height="160" Margin="10,304.5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="438.5" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="textA" HorizontalAlignment="Left" Height="160" Margin="10,304.5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="438.5" Grid.ColumnSpan="2" Visibility="Hidden"/>
         <Label x:Name="label" Content="№1" HorizontalAlignment="Left" Margin="120.28,-0.667,0,0" VerticalAlignment="Top" Height="60.667" Width="259" FontSize="36" Grid.Column="1"/>
+        <Label x:Name="a1" Content="Label" HorizontalAlignment="Left" Margin="39,304,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="421"/>
+        <Label x:Name="a2" Content="Label" HorizontalAlignment="Left" Margin="39,334,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="421"/>
+        <Label x:Name="a3" Content="Label" HorizontalAlignment="Left" Margin="39,365,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="421"/>
+        <Label x:Name="a4" Content="Label" HorizontalAlignment="Left" Margin="39,396,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.237,1.077" Grid.ColumnSpan="2" Width="421"/>
+        <Label x:Name="a5" Content="Label" HorizontalAlignment="Left" Margin="39,427,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1,1.423" Grid.ColumnSpan="2" Width="431"/>
+        <Label x:Name="a6" Content="Label" HorizontalAlignment="Left" Margin="39,458,0,0" VerticalAlignment="Top" RenderTransformOrigin="9.1,0.962" Grid.ColumnSpan="2" Width="421"/>
+        <RadioButton x:Name="rb1" Content="" HorizontalAlignment="Left" Margin="21,313,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.737,0.2"/>
+        <RadioButton x:Name="rb2" Content="" HorizontalAlignment="Left" Margin="20,342,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.737,0.2"/>
+        <RadioButton x:Name="rb3" Content="" HorizontalAlignment="Left" Margin="20,372,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.737,0.2"/>
+        <RadioButton x:Name="rb4" Content="" HorizontalAlignment="Left" Margin="20,403,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.737,0.2"/>
+        <RadioButton x:Name="rb5" Content="" HorizontalAlignment="Left" Margin="20,434,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.737,0.2"/>
+        <RadioButton x:Name="rb6" Content="" HorizontalAlignment="Left" Margin="20,464,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.737,0.2"/>
 
     </Grid>
 </Window>
